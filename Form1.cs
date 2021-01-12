@@ -144,5 +144,12 @@ namespace evaluacion_ceapsi
             DialogResult result = configDialog.ShowDialog();
             loadConfigList();
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            selectedConfigInfo = (ConfigurationInfo)listBox1.SelectedItem;
+            ConfigurationInfo.deleteConfiguration(selectedConfigInfo.Name);
+            loadConfigList();
+        }
     }
 }

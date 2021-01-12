@@ -38,6 +38,36 @@ namespace evaluacion_ceapsi
             System.IO.File.Copy(mappingFile, CONFIG_FILE_DIR + "\\" + name + ".csv");
         }
 
+        public static void deleteConfiguration(string name)
+        {
+            if (System.IO.Directory.Exists(CONFIG_FILE_DIR))
+            {
+                if (System.IO.File.Exists(CONFIG_FILE_NAME))
+                {
+                    System.IO.StreamReader sr = new System.IO.StreamReader(CONFIG_FILE_NAME);
+                    List<string> names = new List<string>();
+                    string existing_name = sr.ReadLine();
+                    while (existing_name != null)
+                    {
+                        if (!existing_name.Trim().Equals(String.Empty))
+                        {
+                            if (!existing_name.Trim().Equals(name))
+                            {
+                                names.Add(existing_name);
+                            }
+                        }
+                        existing_name = sr.ReadLine();
+                    }
+                    existingConfigNames = names.ToArray();
+                    sr.Close();
+                    System.IO.File.WriteAllLines(CONFIG_FILE_NAME, existingConfigNames);
+
+                    System.IO.File.Delete(CONFIG_FILE_DIR + "\\" + name + ".xlsm");
+                    System.IO.File.Delete(CONFIG_FILE_DIR + "\\" + name + ".csv");
+                }
+            }
+        }
+
         public static List<ConfigurationInfo> listConfigurations()
         {
             List<ConfigurationInfo> list = new List<ConfigurationInfo>();

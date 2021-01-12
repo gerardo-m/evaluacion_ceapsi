@@ -72,7 +72,7 @@ namespace evaluacion_ceapsi
             using (TextFieldParser parser = new TextFieldParser(mappingFile))
             {
                 parser.TextFieldType = FieldType.Delimited;
-                parser.SetDelimiters("|");
+                parser.SetDelimiters(",");
                 while (!parser.EndOfData)
                 {
                     MappingRow row = new MappingRow();

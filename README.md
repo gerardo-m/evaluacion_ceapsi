@@ -12,11 +12,11 @@ Es el archivo excel con macros en el que se encuentran sus fórmulas
 
 ### Archivo de mapeo
 Es el archivo que le indica al programa a qué hoja, fila y columna se debe copiar desde el archivo de datos. 
-Debe ser un archivo CSV delimitado por pipelines "|", el cuál puede ser editado y creado en excel.
+Debe ser un archivo CSV delimitado por comas ",", el cuál puede ser editado y creado en excel.
 El formato de cada fila en este archivo es el siguiente:
 
-<columna_en_archivo_de_datos>|<nro_hoja_archivo_plantilla>|<nro_fila_archivo_plantilla>|<nro_columna_archivo_plantilla>
+<columna_en_archivo_de_datos>,<nro_hoja_archivo_plantilla>,<nro_fila_archivo_plantilla>,<nro_columna_archivo_plantilla>
 
 Por ejemplo, si quiero que la columna 2 del archivo de datos vaya a la hoja 1, en la fila 8 y la columna "C", sería lo siguiente:
 
-2|1|8|3
+2,1,8,3
