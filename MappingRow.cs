@@ -13,7 +13,8 @@ namespace evaluacion_ceapsi
         public int TargetSheet { get; set; }
         public int TargetRow { get; set; }
         public int TargetColumn { get; set; }
-        
+        public string Formula { get; set; }
+
 
     }
 }

@@ -87,6 +87,7 @@ namespace evaluacion_ceapsi
         {
             if (fieldsAreValid())
             {
+                progressBar1.Value = 0;
                 selectedConfigInfo = (ConfigurationInfo)listBox1.SelectedItem;
                 backgroundWorker1.RunWorkerAsync();
                 label6.Text = "Comenzando";

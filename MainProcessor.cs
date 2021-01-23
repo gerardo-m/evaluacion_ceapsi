@@ -81,6 +81,7 @@ namespace evaluacion_ceapsi
                     row.TargetSheet = Int32.Parse(fields[1]);
                     row.TargetRow = Int32.Parse(fields[2]);
                     row.TargetColumn = Int32.Parse(fields[3]);
+                    if (fields.Length > 4) row.Formula = fields[4];
                     mappingData.Add(row);
                 }
             }
@@ -95,16 +96,24 @@ namespace evaluacion_ceapsi
                 if (testData[i] != null)
                 {
                     MappingRow mapping = mappingData[i];
-                    targetFile.Sheets[mapping.TargetSheet].Cells[mapping.TargetRow, mapping.TargetColumn] = testData[i];
+                    if (mapping.Formula != null && !mapping.Formula.Equals(string.Empty))
+                    {
+                        string formula = mapping.Formula.Replace("?", testData[i]);
+                        targetFile.Sheets[mapping.TargetSheet].Cells[mapping.TargetRow, mapping.TargetColumn].Formula = formula;
+                    }
+                    else
+                    {
+                        targetFile.Sheets[mapping.TargetSheet].Cells[mapping.TargetRow, mapping.TargetColumn] = testData[i];
+                    }
                     nullRow = false;
                 }
             }
             if (!nullRow)
             {
                 string name = "";
-                if (testData[0] != null)
+                if (testData[1] != null)
                 {
-                    name = testData[0];
+                    name = testData[1];
                 }
                 string fileName = String.Format(FILE_BASE_NAME, DateTime.Now.Ticks.ToString(), name.Replace(" ", "_"));
                 targetFile.SaveAs(resultDirectory + "\\" + fileName);
